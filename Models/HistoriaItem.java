@@ -10,6 +10,14 @@ public class HistoriaItem {
 
     }
 
+    public HistoriaItem(String titulo, String descricao, int parte, String nome) 
+    {
+        this.titulo = titulo;
+        this.descricao = descricao;
+        this.parte = parte;
+        this.nome = nome;
+    }
+
     // Titulo Get; Set;
     public String getTitulo() {
         return this.titulo;

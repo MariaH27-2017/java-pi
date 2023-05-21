@@ -4,6 +4,15 @@ public class Usuario {
     public String username;
     public String password;
 
+    public Usuario() 
+    { }
+    
+    public Usuario(String username, String password)
+    {
+    	this.username = username;
+    	this.password = password;
+    }
+    
     // Username Get; Set;
     public String getUsername() {
         return this.username;
