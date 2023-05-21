@@ -7,12 +7,12 @@ import Database.DbConnection;
 import Repositorios.RankingRepository;
 import Repositorios.UsuarioRepository;
 import Models.Usuario;
-
+import Models.Historia;
 class Main {
     public static void main(String[] args) {
 
       HistoriaRepository repository = new HistoriaRepository();
-      HistoriaItem teste = repository.getHistoryByUsername("Maria");
+      HistoriaItem teste = repository.getHistoryByUsername("Sonic");
       write("------- " + teste.getNome() + "--------------");
       write("");
       
@@ -27,7 +27,7 @@ class Main {
       
       RankingRepository rr = new RankingRepository();
       
-      rr.salvarPontuacaoRanking("Sonic", 400);
+      //rr.salvarPontuacaoRanking("Sonic", 400);
       
       ArrayList<Ranking> testeArray = rr.getRanking();
       write("");
@@ -41,6 +41,18 @@ class Main {
       //Usuario user = new Usuario("Sonic", "123");
       //userRepository.salvarUsuario(user);
       
+      ArrayList<Historia> historias = repository.getHistorias();       
+      write("");
+      write("Exibir Historias:");
+      for(Historia h : historias)
+      {
+    	  write(h.getNumero() + ". " +  h.getNome() + " : " + h.getDescricao());
+      }
+      
+      write("teste historia by name");
+      HistoriaItem hi = repository.getHistoryByName("O Duelo Intenso");
+      write("Parte: " + hi.getParte() + " - " + hi.getTitulo());
+      write(hi.getDescricao());
       
     }
     public static void write(Object object)

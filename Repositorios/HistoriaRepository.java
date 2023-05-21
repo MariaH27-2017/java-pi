@@ -32,8 +32,8 @@ public class HistoriaRepository {
         	query = new StringBuilder()
         	        .append("select h.Nm_History as Nome, h.Part as Parte, h.Title as Titulo, h.description as Descricao ")
         	        .append("from tb_history_item h ")
-        	        .append("on s.id_history_item = h.id ")
-        	        .append("where h.Parte = 1").toString();
+        	        .append("where h.Part = 1 ")
+        	        .append("limit 1").toString();
         	
         	result = executeQuery(query);
         	     	
@@ -42,6 +42,23 @@ public class HistoriaRepository {
         return result;
     }
 
+    public HistoriaItem getHistoryByName(String nome)
+    {
+    	HistoriaItem result = null;
+    
+    	String query = new StringBuilder()
+    	        .append("select h_item.Nm_History as Nome, h_item.Part as Parte, h_item.Title as Titulo, h_item.description as Descricao ")
+    	        .append("from tb_history h ")
+    	        .append("inner join tb_history_item h_item ")
+    	        .append("on h_item.Nm_History = h.nm_History ")
+    	        .append("where h.Nm_History = '"+ nome + "' ")
+    	        .append("and h_item.Part = 1").toString();
+    	
+    	result = executeQuery(query);
+    	
+    	return result;
+    }
+    
     public HistoriaItem getProximaParte(HistoriaItem historia) {
         String query = new StringBuilder()
         .append("select h.Nm_History as nome, h.description as descricao, h.Title as titulo, h.Part as Parte ")
@@ -51,6 +68,37 @@ public class HistoriaRepository {
         
         return executeQuery(query);
         
+    }
+    
+    public ArrayList<Historia> getHistorias()
+    {
+    	ArrayList<Historia> historias = new ArrayList<Historia>();
+    	String query = new StringBuilder()
+    	.append("select h.nm_History as Nome, h.description as Descricao ")
+    	.append("from tb_history h").toString();
+    	
+    	try (Statement stmt = con.createStatement()) {
+            
+            int numero = 0;
+
+            ResultSet rs = stmt.executeQuery(query);
+            while (rs.next()) {
+            	numero += 1;
+            	Historia h = new Historia();
+                h.setNome(rs.getString("Nome"));
+                h.setDescricao(rs.getString("Descricao"));
+                h.setNumero(numero);
+                
+                historias.add(h);
+            }
+           
+            return historias;
+
+        } catch (SQLException ex) {
+            System.out.println("SQL Exception: " + ex.getMessage());
+            System.out.println("Código do erro: " + ex.getErrorCode());
+            return null;
+        }
     }
     
     private HistoriaItem executeQuery(String query)
@@ -80,7 +128,6 @@ public class HistoriaRepository {
         }
     }
     
-
-    
+   
 
 }
