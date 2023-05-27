@@ -1,12 +1,10 @@
 package Repositorios;
 
-import java.sql.Connection;
-import java.sql.SQLException;
-import java.sql.Statement;
 import java.sql.*;
 import com.mysql.jdbc.PreparedStatement;
 
 import Database.DbConnection;
+import Models.Ranking;
 import Models.Usuario;
 
 public class UsuarioRepository {
@@ -31,25 +29,74 @@ public class UsuarioRepository {
          }
     }
 
-    public void verificarUsuarioSenha(Usuario usuario) {
+    public boolean verificarCredenciais(Usuario usuario){
         String query = new StringBuilder()
-                .append("select Username, `Password`")
-                .append("from tb_user")
-                .append("where Username = '" + usuario.getUsername() + "'")
+                .append("select Username, `Password` ")
+                .append("from tb_user ")
+                .append("where Username = '" + usuario.getUsername() + "' ")
                 .append("and `Password` = '" + usuario.getPassword() + "';").toString();
-    }
+        
+        try (Statement stmt = con.createStatement()) {
+            
+            ResultSet rs = stmt.executeQuery(query);
+            while (rs.next()) {
+            	return true;
+            }
+            return false;
 
-    public void verificarSeUsuarioExiste(String username) {
-        String query = new StringBuilder()
-                .append("select count(*)")
-                .append("from tb_user")
-                .append("where Username = '" + username + "';").toString();
+        } catch (SQLException ex) {
+            System.out.println("SQL Exception: " + ex.getMessage());
+            System.out.println("Código do erro: " + ex.getErrorCode());
+        }
+        
+        return false;
+
     }
+        
+    public boolean verificarUsuarioExistente(String username){
+        String query = new StringBuilder()
+                .append("select Username, `Password` ")
+                .append("from tb_user ")
+                .append("where Username = '" + username + "' ")
+                .toString();
+        
+        try (Statement stmt = con.createStatement()) {
+            
+            ResultSet rs = stmt.executeQuery(query);
+            while (rs.next()) {
+            	return true;
+            }
+            return false;
+
+        } catch (SQLException ex) {
+            System.out.println("SQL Exception: " + ex.getMessage());
+            System.out.println("Código do erro: " + ex.getErrorCode());
+        }     
+        return false;
+
+    }    
 
     public void alterarUsuario(Usuario usuario) {
         String query = new StringBuilder()
-                .append("UPDATE tb_user")
-                .append("Username = '" + usuario.getUsername() + " ', `Password` = " + usuario.getPassword() + "),")
-                .toString();
+                .append("UPDATE tb_user ")
+                .append("SET Username = ?, `Password` = ? ")
+                .append("WHERE username = ?")
+                .toString();    
+    	try {
+    		java.sql.PreparedStatement pst = con.prepareStatement(query);
+    		pst.setString(1, usuario.getUsername());
+    		pst.setString(2, usuario.getPassword());
+    		pst.setString(3, usuario.getUsername());
+    		pst.execute();
+    	}
+    	 catch (SQLException ex) {
+             System.out.println("SQL Exception: " + ex.getMessage());
+             System.out.println("Código do erro: " + ex.getErrorCode());
+         }
+    }
+    
+    private void executeQuery(String query)
+    {
+    	
     }
 }

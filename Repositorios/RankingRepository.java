@@ -64,8 +64,19 @@ public class RankingRepository {
 
     public void alterarRanking(String username, int pontuacao) {
         String query = new StringBuilder()
-                .append("UPDATE tb_ranking")
-                .append("Username = '" + username + " ', Score = " + pontuacao + "),")
+                .append("UPDATE tb_ranking SET score = ?")
+                .append("where username = ?")
                 .toString();
+        
+        try {
+    		java.sql.PreparedStatement pst = con.prepareStatement(query);
+    		pst.setInt(1, pontuacao);
+    		pst.setString(2, username);
+    		pst.execute();
+    	}
+    	 catch (SQLException ex) {
+             System.out.println("SQL Exception: " + ex.getMessage());
+             System.out.println("Código do erro: " + ex.getErrorCode());
+         }
     }
 }

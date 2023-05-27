@@ -10,35 +10,33 @@ import Models.Usuario;
 import Models.Historia;
 import Services.HistoriaService;
 import Services.RankingService;
+import Services.UsuarioService;
 
 class Main {
     public static void main(String[] args) {
-    	RankingService rankingService = new RankingService();
-    	rankingService.exibirRanking();
     	
-    	HistoriaService historiaService = new HistoriaService();
-    	historiaService.exibirHistoriaDoUsuario("Maria");
-    	write("");
-    	write("");
-    	historiaService.exibirOpcoesDeHistorias();
-      
+    	UsuarioService service = new UsuarioService();
+    	//service.cadastrarUsuario();
+    	service.login();
     }
     
-    public void testes1()
+    public static void testes1()
     {
-        HistoriaRepository repository = new HistoriaRepository();
-        HistoriaItem teste = repository.getHistoryByUsername("Sonic");
-        write("------- " + teste.getNome() + "--------------");
-        write("");
+    	 HistoriaRepository repository = new HistoriaRepository();
+         HistoriaItem teste = repository.getHistoryByUsername("Sonic");
+         write("------- " + teste.getNome() + "--------------");
+         write("");
+         write("Parte: " + teste.getParte() + " - " + teste.getTitulo());
+         write(teste.getDescricao());
         
-        write("Parte: " + teste.getParte() + " - " + teste.getTitulo());
-        write(teste.getDescricao());
-       
-        write("");
-        
-        HistoriaItem proxParte = repository.getProximaParte(teste);
-        write("Parte: " + proxParte.getParte() + " - " + proxParte.getTitulo());
-        write(proxParte.getDescricao());
+         write("");
+         
+         HistoriaItem proxParte = repository.getProximaParte(teste);
+         write("Parte: " + proxParte.getParte() + " - " + proxParte.getTitulo());
+         write(proxParte.getDescricao());
+         
+    	
+
         
         RankingRepository rr = new RankingRepository();
         
