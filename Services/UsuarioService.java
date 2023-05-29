@@ -36,7 +36,7 @@ public class UsuarioService {
 		
 	}
 
-	public boolean login()
+	public Usuario login()
 	{
 		Usuario usuario = pegarCredeciais();
 				
@@ -67,8 +67,7 @@ public class UsuarioService {
 			write("Falha no login, credenciais estão inválidas");
 		}
 		
-		return usuarioLogado;
-		
+		return usuario;		
 		
 	}
 	

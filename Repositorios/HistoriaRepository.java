@@ -59,6 +59,23 @@ public class HistoriaRepository {
     	return result;
     }
     
+    public HistoriaItem getHistoryById(int id)
+    {
+    	HistoriaItem result = null;
+    
+    	String query = new StringBuilder()
+    	        .append("select h_item.Nm_History as Nome, h_item.Part as Parte, h_item.Title as Titulo, h_item.description as Descricao ")
+    	        .append("from tb_history h ")
+    	        .append("inner join tb_history_item h_item ")
+    	        .append("on h_item.Nm_History = h.nm_History ")
+    	        .append("where h.Id = '"+ id + "' ")
+    	        .append("and h_item.Part = 1").toString();
+    	
+    	result = executeQuery(query);
+    	
+    	return result;
+    }
+    
     public HistoriaItem getProximaParte(HistoriaItem historia) {
         String query = new StringBuilder()
         .append("select h.Nm_History as nome, h.description as descricao, h.Title as titulo, h.Part as Parte ")

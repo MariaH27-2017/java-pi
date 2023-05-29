@@ -11,15 +11,30 @@ import Models.Historia;
 import Services.HistoriaService;
 import Services.RankingService;
 import Services.UsuarioService;
+import ModosDeJogo.ModoHistoria;
 
 class Main {
-    public static void main(String[] args) {
-    	
+    public static void main(String[] args) {	
+
+   	 	Scanner scanner = new Scanner(System.in);
     	UsuarioService service = new UsuarioService();
-    	//service.cadastrarUsuario();
-    	service.login();
+    	ModoHistoria jogo = new ModoHistoria();
+    	        
+    	//Usuario usuario = service.login();
+    	Usuario usuario = new Usuario("Maria", "123");
+    	
+    	if(usuario != null)
+    	{
+    		try {
+				jogo.iniciar(usuario);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+    	}
+    	
     }
     
+
     public static void testes1()
     {
     	 HistoriaRepository repository = new HistoriaRepository();
