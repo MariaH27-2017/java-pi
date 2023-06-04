@@ -20,8 +20,9 @@ class Main {
     	UsuarioService service = new UsuarioService();
     	ModoHistoria jogo = new ModoHistoria();
     	        
-    	//Usuario usuario = service.login();
-    	Usuario usuario = new Usuario("Maria", "123");
+    	Usuario usuario = service.login();
+    	
+    	//Usuario usuario = new Usuario("Maria", "123");
     	
     	if(usuario != null)
     	{

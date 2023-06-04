@@ -83,8 +83,7 @@ public class HistoriaRepository {
         .append("where h.Part = " + (historia.getParte() + 1))
         .append(" and h.Nm_History = '" + historia.getNome() + "'").toString();
         
-        return executeQuery(query);
-        
+        return executeQuery(query);       
     }
     
     public ArrayList<Historia> getHistorias()

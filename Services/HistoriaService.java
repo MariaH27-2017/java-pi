@@ -22,8 +22,21 @@ public class HistoriaService {
 	public HistoriaItem exibirProximaParte(HistoriaItem historia)
 	{
 		HistoriaItem proxParte = repository.getProximaParte(historia);
-		exibirHistoria(proxParte);
-		return proxParte;
+
+		if(proxParte == null || proxParte.getParte() == 0)
+		{
+			escrever("");
+			escrever("Parabéns você concluiu a história: " + historia.getNome() + "!");
+			
+			return null;
+		}
+		else
+		{
+			exibirHistoria(proxParte);
+			return proxParte;
+		}
+		
+		
 	}
 	
 	public HistoriaItem exibirOpcoesDeHistorias(Usuario usuario)

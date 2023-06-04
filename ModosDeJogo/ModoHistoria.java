@@ -38,9 +38,13 @@ public class ModoHistoria {
 			if(continuar)
 			{
 				Thread.sleep(2000); 
-				historiaService.exibirProximaParte(historia);
-			}
-			
+				historia = historiaService.exibirProximaParte(historia);
+				
+				if(historia == null)
+				{
+					continuar = false;
+				}				
+			}			
 	    }
 		
 		

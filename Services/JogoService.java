@@ -7,9 +7,7 @@ public class JogoService {
 	public boolean iniciarPartida()
 	{
 		ArrayList<Integer> numerosValidos = getNumerosGol();		
-		
-
-    	
+	  	
     	boolean gol = false;
     	while(gol == false)
     	{
@@ -34,10 +32,9 @@ public class JogoService {
         	{
            	    scanner = new Scanner(System.in);
            	 	
-           	    escrever("Digite o Número da Historia: ");
         		if (scanner.hasNextInt()) 
     	         {
-        			cantoSelecionado = scanner.nextInt();
+        			 cantoSelecionado = scanner.nextInt();
     	             numeroValido = numerosValidos.contains(cantoSelecionado);
     	             if(numeroValido == true)
     	             {
@@ -62,6 +59,7 @@ public class JogoService {
         		break;
         	}
     	}
+    	escrever("");
 		
 		return gol;
     	
