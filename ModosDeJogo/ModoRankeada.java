@@ -1,3 +1,12 @@
+/*
+ * Nome do arquivo: ModoRankeada.java
+ * Autor: Ana Lucia,Bruno de Oliveira, Giovanna Moreira, Lauriano Carlos, Melissa Gonçalves
+ * Data de criação: 01/03/2023
+ * Versão: 1.0
+ * Descrição: classe que contém o modo de jogo Rankeada
+ * Última modificação: 27/04/2023 (Lauriano)
+ */
+
 package ModosDeJogo;
 import Services.Animacao;
 import Repositorios.RankingRepository;
