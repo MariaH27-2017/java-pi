@@ -8,10 +8,8 @@ import Repositorios.RankingRepository;
 import Repositorios.UsuarioRepository;
 import Models.Usuario;
 import Models.Historia;
-import Services.HistoriaService;
-import Services.RankingService;
-import Services.UsuarioService;
 import ModosDeJogo.ModoHistoria;
+import Services.*;
 
 class Main {
     public static void main(String[] args) {	
@@ -20,9 +18,10 @@ class Main {
     	UsuarioService service = new UsuarioService();
     	ModoHistoria jogo = new ModoHistoria();
     	        
-    	Usuario usuario = service.login();
-    	
-    	//Usuario usuario = new Usuario("Maria", "123");
+    	//Usuario usuario = service.login();
+		Jogo.iniciar();
+
+    	Usuario usuario = new Usuario("Maria", "123");
     	
     	if(usuario != null)
     	{
