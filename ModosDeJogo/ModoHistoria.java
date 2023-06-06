@@ -11,9 +11,7 @@ import Models.HistoriaItem;
 
 public class ModoHistoria {
 
-	private UsuarioService usuarioService = new UsuarioService();
 	private HistoriaService historiaService = new HistoriaService();
-	private RankingService rankingService = new RankingService();
 	private JogoService jogoService = new JogoService();
 	
 	boolean continuar = true;
@@ -22,7 +20,9 @@ public class ModoHistoria {
 	{
 		escrever("BEM VINDO AO MODO HISTORIA\nA IMAGINAÇÃO É O COMEÇO DE TUDO...\n\n");
 	    escrever("TENTE CHEGAR A FASE A FINAL DA COPA  SEM PERDER 3 PENALTIS\nO ULTIMO PENALTI É OBRIGATÓRIO MARCAR-LO PARA VENCER!\n\nA VIDA DETERMINA QUANTOS PENALTIS VOCÊ PODE ERRAR\nBOA SORTE!");
-		HistoriaItem historia = historiaService.exibirOpcoesDeHistorias(usuario);
+		escrever("");
+		
+	    HistoriaItem historia = historiaService.exibirOpcoesDeHistorias(usuario);
 		historiaService.exibirHistoria(historia);
 
 	    while(continuar == true)

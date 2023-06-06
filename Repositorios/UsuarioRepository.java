@@ -8,7 +8,6 @@ import Models.Ranking;
 import Models.Usuario;
 
 public class UsuarioRepository {
-	// LEMBRAR DE: fazer um finally fechando as conexoes 
 	
     DbConnection db = new DbConnection();
     Connection con = db.getConexaoMySQL();
@@ -95,8 +94,4 @@ public class UsuarioRepository {
          }
     }
     
-    private void executeQuery(String query)
-    {
-    	
-    }
 }

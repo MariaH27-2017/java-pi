@@ -65,7 +65,7 @@ public class RankingRepository {
     public void alterarRanking(String username, int pontuacao) {
         String query = new StringBuilder()
                 .append("UPDATE tb_ranking SET score = ?")
-                .append("where username = ?")
+                .append(" where username = ?")
                 .toString();
         
         try {

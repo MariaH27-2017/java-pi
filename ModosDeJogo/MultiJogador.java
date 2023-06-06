@@ -8,7 +8,7 @@
  */
 package ModosDeJogo;
 import Services.Animacao;
-
+import Models.Jogador;
 public class MultiJogador extends ModoSolo {
 
 	
@@ -77,8 +77,8 @@ public class MultiJogador extends ModoSolo {
 		System.out.println();
 
 		// Cria um objeto Usuario para o batedor e outro para o goleiro
-		Usuario batedor = new Usuario(nomeJogador(false));
-		Usuario goleiro = new Usuario(nomeJogador(true));
+		Jogador batedor = new Jogador(nomeJogador(false));
+		Jogador goleiro = new Jogador(nomeJogador(true));
 
 		jogarNovamente = "";
 		// Inicializa os placares

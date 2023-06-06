@@ -10,14 +10,15 @@
 
 package ModosDeJogo;
 import java.util.*;
-import Services.Animacao;
+import Services.*;
+import Models.Jogador;
 public class ModoSolo {
 
 	protected int goleiro;
 	protected int placarJogador;
 	protected int placarGoleiro;
 	protected String jogarNovamente;
-
+	JogoService jogoService = new JogoService();
 	/*Metodo para atribuir dados aos atributos*/
 	protected Scanner input;
 
@@ -254,11 +255,10 @@ public class ModoSolo {
 		Animacao.inicializacaoModoSolo();
 
 		// Cria um objeto de usuário com o nome informado pelo jogador
-		Usuario usuario = new Usuario(nomeJogador());
+		Jogador usuario = new Jogador(nomeJogador());
 
 		do {
-			// Entra em um loop até que o usuário escolha um nível de jogo válido (entre 1 e
-			// 3)
+			// Entra em um loop até que o usuário escolha um nível de jogo válido (entre 1 e 3)
 			usuario.setNivelDeJogo(escolherNivel());
 
 			if (usuario.getNivelDeJogo() < 1 || usuario.getNivelDeJogo() > 3) {
@@ -288,14 +288,14 @@ public class ModoSolo {
 			} while (usuario.getCantoSelecionado() < 1 || usuario.getCantoSelecionado() > 5);
 
 			          /**@link ModoSolo#numeroAleatorio*/
-			goleiro = numeroAleatorio();
-			
+			//goleiro = numeroAleatorio();
+			goleiro = 1;
 			int nivelLooping = nivel(usuario.getNivelDeJogo(), usuario.getCantoSelecionado(), goleiro);
 			/** Verifica se o usuário fez um gol ou não, com base no canto selecionado e no
 			 * @link ModoSolo#nivel
 			 */
 			boolean gol = verificarPenalty(usuario.getCantoSelecionado(), nivelLooping);
-
+			boolean gol2 = jogoService.iniciarPartida();
 			/* Chama o método de animação para mostrar se o usuário fez um gol ou não
 			 * * @link Animacao#gol()
 			 */
@@ -364,136 +364,4 @@ public class ModoSolo {
 		}
 	}
 	
-	public class Usuario {
-
-		private String nome;
-		private int nivelDeJogo;
-		private int cantoSelecionado;
-		private int pontuacao;
-		private int id_usuario;
-
-		/**
-		 * Construtor padrão da classe. Inicializa o nome com o valor "Batedor", o nível
-		 * de jogo com 1, o canto selecionado com 1 e a pontuação com 0.
-		 */
-		public Usuario() {
-			this.nome = "Batedor";
-			this.nivelDeJogo = 1;
-			this.cantoSelecionado = 1;
-			this.pontuacao = 0;
-		}
-
-		/**
-		 * Construtor da classe que recebe o nome do usuário como parâmetro.
-		 * 
-		 * @param nome o nome do usuário.
-		 */
-		public Usuario(String nome) {
-			this.nome = nome;
-			this.nivelDeJogo = 1;
-			this.cantoSelecionado = 1;
-			this.pontuacao = 0;
-		}
-
-		/**
-		 * 
-		 * Método para obter o nome do usuário.
-		 * 
-		 * @return o nome do usuário.
-		 */
-		public String getNome() {
-			return nome;
-		}
-
-		/**
-		 * 
-		 * Método para definir o nome do usuário.
-		 * 
-		 * @param nome o nome do usuário.
-		 */
-		public void setNome(String nome) {
-			this.nome = nome;
-		}
-
-		/**
-		 * 
-		 * Método para obter o nível de jogo do usuário.
-		 * 
-		 * @return o nível de jogo do usuário.
-		 */
-		public int getNivelDeJogo() {
-			return nivelDeJogo;
-		}
-
-		/**
-		 * 
-		 * Método para definir o nível de jogo do usuário.
-		 * 
-		 * @param nivelDeJogo o nível de jogo do usuário.
-		 */
-		public void setNivelDeJogo(int nivelDeJogo) {
-			this.nivelDeJogo = nivelDeJogo;
-		}
-
-		/**
-		 * 
-		 * Método para obter a pontuação atual do usuário.
-		 * 
-		 * @return a pontuação atual do usuário.
-		 */
-		public int getPontuacao() {
-			return pontuacao;
-		}
-
-		/**
-		 * 
-		 * Método para atualizar a pontuação do usuário.
-		 * 
-		 * @param pontuacao a pontuação a ser somada à pontuação atual do usuário.
-		 */
-		public void setPontuacao(int pontuacao) {
-			this.pontuacao += pontuacao;
-		}
-
-		/**
-		 * 
-		 * Método para obter o canto selecionado pelo usuário.
-		 * 
-		 * @return o canto selecionado pelo usuário.
-		 */
-		public int getCantoSelecionado() {
-			return cantoSelecionado;
-		}
-
-		/**
-		 * 
-		 * Método para definir o canto selecionado pelo usuário.
-		 * 
-		 * @param cantoSelecionado o canto selecionado pelo usuário.
-		 */
-		public void setCantoSelecionado(int cantoSelecionado) {
-			this.cantoSelecionado = cantoSelecionado;
-		}
-
-		/**
-		 * 
-		 * Método para obter o ID do usuário.
-		 * 
-		 * @return o ID do usuário.
-		 */
-		public int getId_usuario() {
-			return id_usuario;
-		}
-
-		/**
-		 * 
-		 * Método para definir o ID do usuário.
-		 * 
-		 * @param id_usuario o ID do usuário.
-		 */
-		public void setId_usuario(int id_usuario) {
-			this.id_usuario = id_usuario;
-		}
-	}
-
 }

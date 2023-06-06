@@ -1,5 +1,4 @@
 package Services;
-import java.sql.SQLException;
 import java.util.*;
 import Repositorios.UsuarioRepository;
 import Models.Usuario;
@@ -8,7 +7,28 @@ public class UsuarioService {
 	Scanner scanner = new Scanner(System.in);
 	UsuarioRepository repositorio = new UsuarioRepository();
 	
-	public void cadastrarUsuario()
+	public Usuario iniciarSessao()
+	{
+		write("Possui um usuario? 1.Sim 2.Não");
+		
+		String r = scanner.nextLine();
+		
+		if(r.equalsIgnoreCase("Sim") || r.equalsIgnoreCase("1") || r.equalsIgnoreCase("S"))
+		{
+			return login();
+		}
+		else if(r.equalsIgnoreCase("Nao") || r.equalsIgnoreCase("2") || r.equalsIgnoreCase("N") || r.equalsIgnoreCase("Não"))
+		{
+			return cadastrarUsuario();
+		}
+		else
+		{
+			write("Valor inválido");
+			return iniciarSessao();
+		}
+	}
+	
+	public Usuario cadastrarUsuario()
 	{
 		try 
 		{
@@ -28,10 +48,12 @@ public class UsuarioService {
 									
 			repositorio.salvarUsuario(usuario);
 			write("Usuário salvo com sucesso");
+			write("");
+			return usuario;
 		}
    	 	catch (Exception ex) {
             System.out.println("Exception: " + ex.getMessage());
-            
+            return null;
         }
 		
 	}
@@ -67,10 +89,12 @@ public class UsuarioService {
 			write("Falha no login, credenciais estão inválidas");
 		}
 		
+		write("");
 		return usuario;		
 		
 	}
 	
+
 	private Usuario pegarCredeciais()
 	{
 		Usuario usuario = new Usuario();

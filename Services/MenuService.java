@@ -12,7 +12,8 @@ import java.util.*;
 import ModosDeJogo.*;
 import Repositorios.RankingRepository;
 import Models.Usuario;
-public class Jogo {
+import Services.RankingService;
+public class MenuService {
 
 	/**
 	 * O método `iniciar` é responsável por exibir o menu principal do jogo e
@@ -22,42 +23,40 @@ public class Jogo {
 	 * para sair do jogo.
 	 */
 
-	public static void iniciar() {
+	public static void iniciar(Usuario usuario) {
 
 		int opcao = -1;
-
+	
 		Scanner input = new Scanner(System.in);
 		ModoSolo modoSolo = new ModoSolo();
 		MultiJogador multiJogador = new MultiJogador();
 		ModoRankeada modoRankeada = new ModoRankeada();
 		ModoHistoria modoHistoria = new ModoHistoria();
-		RankingRepository ranking = new RankingRepository();
-		Usuario usuario = new Usuario("Maria", "123");
-		
+		RankingService ranking = new RankingService();		
 		do {
 
 			Animacao.exibirMenuInicial();
 			System.out.print("Opcao: ");
 
-			// tratamento de excecao
-			if (input.hasNextInt()) { // verifica se há um valor inteiro disponível no fluxo de entrada
-				opcao = input.nextInt(); // se houver, lê o valor inteiro e atribui à variável "opcao"
-			} else {
-				System.out.println("Entrada inválida. Por favor, tente novamente."); // se não houver, exibe uma
-																						// mensagem de erro
-			}
-
-			do {
-				// Entra em um loop até que o usuário escolha uma opcção válida (entre 0 e 5)
-				if (opcao < 0 || opcao > 5) {
-					System.out.println();
-					System.out.println("[Insercao invalida]");
-					System.out.println();
-					System.out.print("Opcao: ");
-					opcao = input.nextInt();
-
-				}
-			} while (opcao < 1 || opcao > 5);
+			// Entra em um loop até que o usuário escolha uma opcção válida (entre 0 e 5)
+			boolean numeroValido = false;		
+        	while(numeroValido == false)
+        	{
+        		input = new Scanner(System.in);
+           	 	
+        		if (input.hasNextInt()) 
+    	         {
+        			 opcao = input.nextInt();
+    	             numeroValido = opcao >= 0 || opcao <= 5;
+    	             if(numeroValido == true)
+    	             {
+    	            	 break;
+    	             }
+    	         }
+        		
+        		System.out.println("Você não digitou um número válido. Escolha a opção de 0 a 5"); 		
+        		System.out.println("");
+        	}
 
 			switch (opcao) {
 			case 1:
@@ -78,7 +77,10 @@ public class Jogo {
 				modoRankeada.Rankedada();
 				break;
 			case 5:
-				ranking.getRanking();
+				ranking.exibirRanking();
+				break;
+			case 0:
+				System.out.println("Obrigado por jogar! Volte sempre para novas aventuras e desafios emocionantes!");
 				break;
 			default:
 				System.out.println("Opcao Inválida");

@@ -9,6 +9,7 @@
 
 package ModosDeJogo;
 import Services.Animacao;
+import Models.Jogador;
 import Repositorios.RankingRepository;
 public class ModoRankeada extends ModoSolo {
 
@@ -18,7 +19,7 @@ public class ModoRankeada extends ModoSolo {
 		         /**@link ModoSolo#inicializacaoModoRankeada()*/
 		Animacao.inicializacaoModoRankeada();
 		
-		Usuario usuario = new Usuario(nomeJogador());
+		Jogador usuario = new Jogador(nomeJogador());
 		RankingRepository repository = new RankingRepository();
 		
 	//O modo Rankeada se passa no modo fácil

@@ -14,21 +14,16 @@ import Services.*;
 class Main {
     public static void main(String[] args) {	
 
-   	 	Scanner scanner = new Scanner(System.in);
-    	UsuarioService service = new UsuarioService();
-    	ModoHistoria jogo = new ModoHistoria();
-    	        
-    	//Usuario usuario = service.login();
-		Jogo.iniciar();
-
-    	Usuario usuario = new Usuario("Maria", "123");
-    	
+    	UsuarioService service = new UsuarioService();  
+    	//Usuario usuario = service.iniciarSessao();
+		Usuario usuario = new Usuario("Maria", "123");
     	if(usuario != null)
     	{
     		try {
-				jogo.iniciar(usuario);
-			} catch (InterruptedException e) {
-				e.printStackTrace();
+    			MenuService.iniciar(usuario);
+			} catch (Exception e) {
+				
+				write("Erro interno. Contate um dos desenvolvedores.");
 			}
     	}
     	
