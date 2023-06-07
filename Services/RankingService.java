@@ -42,8 +42,16 @@ public class RankingService {
 	
 	public void salvarPontuacao(String username, int pontuacao)
 	{
-		repository.salvarPontuacaoRanking(username, pontuacao);
+		if(repository.usuarioPossuiRanking(username))
+		{
+			repository.alterarRanking(username, pontuacao);
+		}
+		else
+		{
+			repository.salvarPontuacaoRanking(username, pontuacao);
+		}						
 	}
+	
 	
 	public void escrever(Object texto)
 	{

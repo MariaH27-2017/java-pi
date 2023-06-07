@@ -22,7 +22,7 @@ class Main {
     		try {
     			MenuService.iniciar(usuario);
 			} catch (Exception e) {
-				
+				write(e.getMessage());
 				write("Erro interno. Contate um dos desenvolvedores.");
 			}
     	}

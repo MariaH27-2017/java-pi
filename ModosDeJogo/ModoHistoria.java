@@ -15,7 +15,8 @@ public class ModoHistoria {
 	private JogoService jogoService = new JogoService();
 	
 	boolean continuar = true;
-	
+	boolean gol = false;
+	int contadorErrors = 0;
 	public void iniciar(Usuario usuario) throws InterruptedException
 	{
 		escrever("BEM VINDO AO MODO HISTORIA\nA IMAGINAÇÃO É O COMEÇO DE TUDO...\n\n");
@@ -33,22 +34,34 @@ public class ModoHistoria {
 			Thread.sleep(2000); 
 			escrever("");
 			
-			continuar = jogoService.iniciarPartida();
+			gol = jogoService.iniciarPartida(1);
 			
-			if(continuar)
+			if(gol == false && contadorErrors < 3)
+        	{
+				contadorErrors += 1;
+        		escrever("Tente Novamente");
+        	}
+			else
 			{
 				Thread.sleep(2000); 
+				contadorErrors = 0;
 				historia = historiaService.exibirProximaParte(historia);
 				
 				if(historia == null)
 				{
 					continuar = false;
-				}				
-			}			
+				}	
+			}
+			
+			if(contadorErrors > 3 && gol == false)
+        	{
+				escrever("Lamento, você excedeu o limite de erros no jogo de penalidades. É o fim do jogo.");
+				escrever("");
+        		break;
+        	}
+					
 	    }
-		
-		
-		
+						
 	}
 	
 	

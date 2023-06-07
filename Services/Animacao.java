@@ -16,7 +16,7 @@ public class Animacao {
 	public static void exibirMenuInicial() {
 		System.out.println("PENALTY FOOTBALL GAME");
 		System.out.println();
-		System.out.println("--[1] MODO SOLO\n--[2] MULTIPLAYER\n--[3] MODO HISTORIA\n--[4] RANKEADA\n--[5] RANKING GLOBAL\n--[0] SAIR \n");
+		System.out.println("--[1] MODO SOLO\n--[2] MULTIPLAYER\n--[3] MODO HISTORIA\n--[4] RANKEADA\n--[5] EXIBIR RANKING GLOBAL\n--[0] SAIR \n");
 	}
 
 	/*Exibe a tela de inicialização do modo solo do jogo  penalty football.
@@ -61,7 +61,7 @@ public class Animacao {
 	Exibe mensagem de gol ou defesa durante o jogo.
 	@param gol se true, exibe mensagem de gol, se false, exibe mensagem de defesa.
 	*/
-	public static void gol(boolean gol) {
+	public void exibirMensagemGol(boolean gol) {
 
 		if (gol) {
 			System.out.println("PARTIIUUUU");

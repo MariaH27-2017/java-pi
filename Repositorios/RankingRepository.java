@@ -36,6 +36,7 @@ public class RankingRepository {
             }
            
             return ranking;
+            
 
         } catch (SQLException ex) {
             System.out.println("SQL Exception: " + ex.getMessage());
@@ -78,5 +79,30 @@ public class RankingRepository {
              System.out.println("SQL Exception: " + ex.getMessage());
              System.out.println("Código do erro: " + ex.getErrorCode());
          }
+    }
+
+    public boolean usuarioPossuiRanking(String username)
+    {
+    	 String query = new StringBuilder()
+                 .append("SELECT COUNT(1) as count")
+                 .append(" FROM tb_ranking")
+                 .append(" WHERE username = '" + username + "'")
+                 .toString();
+    	 
+    	 int count = 0;
+    	 try (Statement stmt = con.createStatement()) {
+    		 
+             ResultSet rs = stmt.executeQuery(query);
+             
+             while (rs.next()) {
+             	count = rs.getInt("count");
+             }                     
+
+         } catch (SQLException ex) {
+             System.out.println("SQL Exception: " + ex.getMessage());
+             System.out.println("Código do erro: " + ex.getErrorCode());
+             return false;
+         }
+    	 return count > 0;
     }
 }

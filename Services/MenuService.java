@@ -21,9 +21,10 @@ public class MenuService {
 	 * objetos `ModoSolo`, `MultiJogador`, `ModoRankeada` e `ModoHistoria` para cada
 	 * modo de jogo e exibe o menu principal até que o usuário escolha a opção "0"
 	 * para sair do jogo.
+	 * @throws InterruptedException 
 	 */
 
-	public static void iniciar(Usuario usuario) {
+	public static void iniciar(Usuario usuario) throws InterruptedException {
 
 		int opcao = -1;
 	
@@ -60,7 +61,7 @@ public class MenuService {
 
 			switch (opcao) {
 			case 1:
-				modoSolo.modoSolo();
+				modoSolo.modoSolo(usuario);
 				break;
 			case 2:
 				multiJogador.multiJogador();
@@ -74,7 +75,7 @@ public class MenuService {
 				}
 				break;
 			case 4:
-				modoRankeada.Rankedada();
+				modoRankeada.Rankedada(usuario);
 				break;
 			case 5:
 				ranking.exibirRanking();

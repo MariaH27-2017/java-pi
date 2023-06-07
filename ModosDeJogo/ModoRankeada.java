@@ -8,53 +8,35 @@
  */
 
 package ModosDeJogo;
-import Services.Animacao;
-import Models.Jogador;
-import Repositorios.RankingRepository;
+import Services.*;
+import Models.*;
 public class ModoRankeada extends ModoSolo {
 
-	public void Rankedada() {
+	public void Rankedada(Usuario usuario) throws InterruptedException {
 
 		
 		         /**@link ModoSolo#inicializacaoModoRankeada()*/
 		Animacao.inicializacaoModoRankeada();
 		
-		Jogador usuario = new Jogador(nomeJogador());
-		RankingRepository repository = new RankingRepository();
+		Jogador jogador = new Jogador(usuario.getUsername());
+		RankingService rankingService = new RankingService();
+		JogoService jogoService = new JogoService();
+		boolean gol = false;
 		
-	//O modo Rankeada se passa no modo fácil
-			usuario.setNivelDeJogo(1);
+			//O modo Rankeada se passa no modo fácil
+			jogador.setNivelDeJogo(1);
 			
 			jogarNovamente = "S";
+			
 			// Define a pontuacao inicial do jogador
 			placarJogador = 0;
 
 			while (!(jogarNovamente == "N")) {
-
-				boolean gol = true;
+						/**@link JogoService#iniciarPartida()*/
+				gol = jogoService.iniciarPartida(jogador.getNivelDeJogo());
 				
-				do {
-					                            /**@link ModoSolo#escolherCanto()*/
-					usuario.setCantoSelecionado(escolherCanto());
-					input.nextLine();
-
-					if (usuario.getCantoSelecionado() < 1 || usuario.getCantoSelecionado() > 5) {
-						System.out.println();
-						System.out.println("[Insercao invalida]");
-					}
-
-				} while (usuario.getCantoSelecionado() < 1 || usuario.getCantoSelecionado() > 5);
-
-				                  /**@link ModoSolo#nivel()*/
-				int nivelLooping = nivel(usuario.getNivelDeJogo(), usuario.getCantoSelecionado(), goleiro);
-				
-				         /**@link ModoSolo#verificarPenalty()*/
-			      gol = verificarPenalty(usuario.getCantoSelecionado(), nivelLooping);
-			      
-			      Animacao.gol(gol);
-			      
 			      if(gol == true) {
-			    	  usuario.setPontuacao(10);
+			    	  jogador.setPontuacao(10);
 			      }else {
 			    	  break;
 			      }
@@ -62,11 +44,9 @@ public class ModoRankeada extends ModoSolo {
 			
 			System.out.println();
 			System.out.println("--Fim de jogo!!!--");
-			System.out.println("Sua pontuacao foi: "+ usuario.getPontuacao()+ " pontos!");
-			
-			repository.alterarRanking(usuario.getNome(), usuario.getPontuacao());
+			System.out.println("Sua pontuacao foi: "+ jogador.getPontuacao()+ " pontos!");
+			rankingService.salvarPontuacao(jogador.getNome(), jogador.getPontuacao());
 			System.out.println();
-
 	}
 }
 
