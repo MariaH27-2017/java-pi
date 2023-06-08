@@ -13,7 +13,7 @@ Lauriano Carlos
 Maria Helena dos Santos
 Melissa Gonçalves
 Última modificação: 21/05/2023 (Maria Helena)
-Classe ModoHistoria
+Classe Database
 Essa classe  é responsável por estabelecer uma conexão com o banco de dados. Ela utiliza a API JDBC (Java Database Connectivity) para interagir com o banco de dados..
 */
 package Database;
