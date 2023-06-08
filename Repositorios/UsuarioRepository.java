@@ -1,10 +1,26 @@
+/*
+Nome do Projeto: Penaltyfootball
+Data de Criação: 28/05/2023
+Banco de dados: MySQL
+Package: Repositorios
+JDK: 17
+Libraries: mysql-connector-java
+Desenvolvedores:
+
+Ana Lucia
+Bruno de Oliveira
+Giovanna Moreira
+Lauriano Carlos
+Maria Helena dos Santos
+Melissa Gonçalves
+Última modificação: 07/06/2023 (Maria Helena)
+Classe UsuarioRepository
+Essa classe representa o repositório de usuários, responsável por realizar operações relacionadas aos usuários na tabela "tb_user" do banco de dados.
+*/
 package Repositorios;
 
 import java.sql.*;
-import com.mysql.jdbc.PreparedStatement;
-
 import Database.DbConnection;
-import Models.Ranking;
 import Models.Usuario;
 
 public class UsuarioRepository {
@@ -12,6 +28,12 @@ public class UsuarioRepository {
     DbConnection db = new DbConnection();
     Connection con = db.getConexaoMySQL();
 
+
+/**
+     * Salva um usuário no banco de dados.
+     *
+     * @param usuario O usuário a ser salvo.
+     */
     public void salvarUsuario(Usuario usuario) {
         String query = new StringBuilder()
                 .append("insert into tb_user (Username, `Password`)")
@@ -28,6 +50,12 @@ public class UsuarioRepository {
          }
     }
 
+/**
+     * Verifica as credenciais de um usuário.
+     *
+     * @param usuario O usuário a ser verificado.
+     * @return true se as credenciais forem válidas, false caso contrário.
+     */
     public boolean verificarCredenciais(Usuario usuario){
         String query = new StringBuilder()
                 .append("select Username, `Password` ")
@@ -51,7 +79,13 @@ public class UsuarioRepository {
         return false;
 
     }
-        
+
+/**
+     * Verifica se um usuário existe no banco de dados.
+     *
+     * @param username O nome de usuário a ser verificado.
+     * @return true se o usuário existir, false caso contrário.
+     */
     public boolean verificarUsuarioExistente(String username){
         String query = new StringBuilder()
                 .append("select Username, `Password` ")
@@ -75,23 +109,4 @@ public class UsuarioRepository {
 
     }    
 
-    public void alterarUsuario(Usuario usuario) {
-        String query = new StringBuilder()
-                .append("UPDATE tb_user ")
-                .append("SET Username = ?, `Password` = ? ")
-                .append("WHERE username = ?")
-                .toString();    
-    	try {
-    		java.sql.PreparedStatement pst = con.prepareStatement(query);
-    		pst.setString(1, usuario.getUsername());
-    		pst.setString(2, usuario.getPassword());
-    		pst.setString(3, usuario.getUsername());
-    		pst.execute();
-    	}
-    	 catch (SQLException ex) {
-             System.out.println("SQL Exception: " + ex.getMessage());
-             System.out.println("Código do erro: " + ex.getErrorCode());
-         }
-    }
-    
 }

@@ -1,3 +1,22 @@
+/*
+
+Nome do Projeto: Penaltyfootball
+Data de Criação: 27/05/2023
+Banco de dados: MySQL
+Package: Repositorios
+JDK: 17
+Libraries: mysql-connector-java
+Desenvolvedores:
+Ana Lucia
+Bruno de Oliveira
+Giovanna Moreira
+Lauriano Carlos
+Maria Helena dos Santos
+Melissa Gonçalves
+Última modificação: 05/06/2023 (Bruno)
+Classe RankingRepository
+Essa classe representa o repositório de rankings, responsável por acessar o banco de dados e obter informações sobre os rankings da tabela "tb_ranking".
+*/
 package Repositorios;
 
 import java.sql.Connection;
@@ -15,6 +34,11 @@ public class RankingRepository {
     DbConnection db = new DbConnection();
     Connection con = db.getConexaoMySQL();
 
+/**
+ * Obtém os dados do ranking.
+ * 
+ * @return Uma lista de objetos Ranking contendo os nomes de usuário e as pontuações.
+ */
     public ArrayList<Ranking> getRanking() {
         
     	ArrayList<Ranking> ranking = new ArrayList<Ranking>();
@@ -45,6 +69,12 @@ public class RankingRepository {
         }
     }
 
+/**
+ * Salva a pontuação no ranking.
+ * 
+ * @param username  O nome de usuário.
+ * @param pontuacao A pontuação a ser salva.
+ */
     public void salvarPontuacaoRanking(String username, int pontuacao) {
         String query = new StringBuilder()
                 .append("insert into tb_ranking (Username, Score)")
@@ -63,6 +93,12 @@ public class RankingRepository {
         
     }
 
+ /**
+ * Altera a pontuação de um usuário no ranking.
+ * 
+ * @param username  O nome de usuário.
+ * @param pontuacao A nova pontuação.
+ */   
     public void alterarRanking(String username, int pontuacao) {
         String query = new StringBuilder()
                 .append("UPDATE tb_ranking SET score = ?")
@@ -81,6 +117,13 @@ public class RankingRepository {
          }
     }
 
+
+/**
+* Verifica se um usuário possui ranking.
+*
+* @param username O nome de usuário.
+* @return true se o usuário possuir ranking, false caso contrário.
+*/
     public boolean usuarioPossuiRanking(String username)
     {
     	 String query = new StringBuilder()

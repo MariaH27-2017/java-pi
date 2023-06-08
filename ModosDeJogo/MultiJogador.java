@@ -1,6 +1,6 @@
 /*
  * Nome do arquivo: MultiJogador.java
- * Autor: Ana Lucia,Bruno de Oliveira, Giovanna Moreira, Lauriano Carlos, Melissa Gonçalves
+ * Autor: Ana Lucia,Bruno de Oliveira, Giovanna Moreira, Lauriano Carlos, Maria Helena dos Santos, Melissa Gonçalves
  * Data de criação: 01/03/2023
  * Versão: 1.0
  * Descrição: classe que contém o modo de jogo MultiJogador

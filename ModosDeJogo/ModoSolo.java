@@ -4,7 +4,7 @@
  * Data de criação: 01/03/2023
  * Versão: 1.0
  * Descrição: classe com o metodo de modoSolo, super classe
- * Colaboradores: Ana Lucia, Bruno de Oliveira, Giovanna Moreira, Melissa Gonçalve, Lauriano Carlos
+ * Colaboradores: Ana Lucia, Bruno de Oliveira, Giovanna Moreira, Maria Helena dos Santos, Melissa Gonçalve, Lauriano Carlos
  * Última modificação: 27/04/2023 (Lauriano)
  */
 

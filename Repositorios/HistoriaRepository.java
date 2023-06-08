@@ -1,18 +1,41 @@
+/*
+Nome do Projeto: Penaltyfootball
+Data de Criação: 27/05/2023
+Banco de dados: MySQL
+Package: Repositorios
+JDK: 17
+Libraries: mysql-connector-java
+Desenvolvedores:
+Ana Lucia
+Bruno de Oliveira
+Giovanna Moreira
+Lauriano Carlos
+Maria Helena dos Santos
+Melissa Gonçalves
+Última modificação: 28/05/2023 (Bruno)
+Classe HistoriaRepository
+Essa classe representa o repositório de histórias, responsável por acessar o banco de dados e obter informações sobre as histórias da tabela "tb_history" e "tb_history_item".
+Ela possui métodos para buscar histórias por usuário, por nome, por ID e para obter a próxima parte de uma história.
+Além disso, contém um método para obter a lista de todas as histórias disponíveis no banco de dados.
+*/
 package Repositorios;
 
-import java.sql.Connection;
 import java.util.*;
 import Models.Historia;
 import Models.HistoriaItem;
 import java.sql.*;
-import java.sql.DriverManager;
-import java.sql.SQLException;
 import Database.DbConnection;
 
 public class HistoriaRepository {
 
     DbConnection db = new DbConnection();
     Connection con = db.getConexaoMySQL();
+
+/**
+ * Obtém a história de um usuário pelo nome de usuário.
+ * @param username o nome de usuário.
+ * @return o item de história encontrado ou null se não encontrado.
+ */
     public HistoriaItem getHistoryByUsername(String username) {
     	
     	HistoriaItem result = null;
@@ -26,21 +49,14 @@ public class HistoriaRepository {
         
         result = executeQuery(query);
 
-       //if(result.getParte() == 0)
-       //{
-       //	query = new StringBuilder()
-       //	        .append("select h.id, h.Nm_History as Nome, h.Part as Parte, h.Title as Titulo, h.description as Descricao ")
-       //	        .append("from tb_history_item h ")
-       //	        .append("where h.Part = 1 ")
-       //	        .append("limit 1").toString();
-       //	
-       //	result = executeQuery(query);
-       //	     	
-       //}     
-        
         return result;
     }
 
+ /**
+ * Obtém a história pelo nome.
+ * @param nome o nome da história.
+ * @return o item de história encontrado ou null se não encontrado.
+ */
     public HistoriaItem getHistoryByName(String nome)
     {
     	HistoriaItem result = null;
@@ -57,7 +73,11 @@ public class HistoriaRepository {
     	
     	return result;
     }
-    
+/**
+ * Obtém a história pelo ID.
+ * @param id o ID da história.
+ * @return o item de história encontrado ou null se não encontrado.
+ */
     public HistoriaItem getHistoryById(int id)
     {
     	HistoriaItem result = null;
