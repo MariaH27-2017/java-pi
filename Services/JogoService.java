@@ -158,8 +158,8 @@ public class JogoService {
 		// Retorna o valor da variável goleiro
 		// Se o valor for diferente de cantoSelecionado terá que ser marcado o gol senão
 		// defesa do goleiro
-		return 1;
-		//return goleiro;		
+	
+		return goleiro;		
 	}
 	
 	/**

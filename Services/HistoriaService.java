@@ -129,20 +129,7 @@ public class HistoriaService {
 		}
 			
 	}
-	
-	private Historia filtrarHistoriaPeloNumero(int numero, ArrayList<Historia> historias)
-	{
-		Historia historia = null;
-        for (Historia h : historias) {
-            if (h.getNumero() == numero) {
-                historia = h;
-                break; 
-            }
-        }
-        
-        return historia;
-	}
-	
+		
 	public void escrever(Object texto)
 	{
 		System.out.println(texto);
