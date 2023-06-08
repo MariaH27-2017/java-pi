@@ -46,7 +46,8 @@ public class ModoHistoria {
 	    {
 			escrever("");
 
-			Thread.sleep(2000); 
+			// é usado para introduzir uma pausa de 1 segundo na execução do programa dentro do loop.
+			Thread.sleep(1000); 
 			escrever("");
 			
 			// "iniciarPartida" é proveniente da classe JogoService e é responsável por iniciar uma partida de penalidades.
@@ -71,6 +72,7 @@ public class ModoHistoria {
 	        		break;
 	        	}
 				
+				//é usado para introduzir uma pausa de 1 segundo na execução do programa dentro do loop.
 				Thread.sleep(2000); 
 				contadorErrors = 0;
 				//"exibirProximaParte" é utilizado para avançar para a próxima parte da história

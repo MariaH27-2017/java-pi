@@ -113,8 +113,9 @@ public class JogoService {
 		/* Chama o método de animação para mostrar se o usuário fez um gol ou não
 		 * * @link Animacao#gol()
 		 */
-		animacao.exibirMensagemGol(gol);				
-		Thread.sleep(2000); 		
+		animacao.exibirMensagemGol(gol);	
+		//é usado para introduzir uma pausa de 1,5 segundos.			
+		Thread.sleep(1500); 		
 		return gol;
 	}
 	
