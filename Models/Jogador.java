@@ -1,3 +1,21 @@
+/*
+Nome do Projeto: Penaltyfootball
+Data de Criação:  01/03/2023
+Banco de dados: MySQL
+Package: Models
+JDK: 17
+Libraries: mysql-connector-java
+Desenvolvedores:
+Ana Lucia
+Bruno de Oliveira
+Giovanna Moreira
+Lauriano Carlos
+Maria Helena dos Santos
+Melissa Gonçalves
+Última modificação: 03/03/2023 (Lauriano)
+Classe Jogador (Model)
+Essa classe representa um objeto de modelo para o Modo Solo, Multiplayer e Modo Ranqueado.
+*/
 package Models;
 
 public class Jogador {

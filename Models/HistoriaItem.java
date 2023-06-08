@@ -1,23 +1,35 @@
+/*
+Nome do Projeto: Penaltyfootball
+Data de Criação: 30/07/2023
+Banco de dados: MySQL
+Package: Models
+JDK: 17
+Libraries: mysql-connector-java
+Desenvolvedores:
+Ana Lucia
+Bruno de Oliveira
+Giovanna Moreira
+Lauriano Carlos
+Maria Helena dos Santos
+Melissa Gonçalves
+Última modificação: 01/06/2023 (Melissa)
+Classe HistoriaItem (Model)
+Essa classe representa um objeto de modelo para a tabela "tb_history_item" do banco de dados.
+*/
+
 package Models;
 
 public class HistoriaItem {
+    // Representa o titulo da parte da Historia.
     private String titulo;
+    // Representa a descricao do texto da historia.
     private String descricao;
+    // Representa o número da parte da historia.
     private int parte;
+    // Representa o Nome da Historia
     private String nome;
+    // Representa o Id da tabela "tb_history_item"
     private int id;
-
-    public HistoriaItem() {
-
-    }
-
-    public HistoriaItem(String titulo, String descricao, int parte, String nome) 
-    {
-        this.titulo = titulo;
-        this.descricao = descricao;
-        this.parte = parte;
-        this.nome = nome;
-    }
     
     // Id Get; Set;
     public int getId()
