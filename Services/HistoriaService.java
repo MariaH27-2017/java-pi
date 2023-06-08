@@ -11,7 +11,6 @@ public class HistoriaService {
 	
 	HistoriaRepository repository = new HistoriaRepository();
     SaveRepository saveRepository = new SaveRepository();
-	Scanner scanner = new Scanner(System.in);
 	String tracosEsquerda = "------------- ";
 	String tracosDireita = " -------------";
 	
@@ -46,7 +45,8 @@ public class HistoriaService {
 	public HistoriaItem exibirOpcoesDeHistorias(Usuario usuario)
 	{
 		HistoriaItem historia = repository.getHistoryByUsername(usuario.getUsername());
-		
+		Scanner scanner = new Scanner(System.in);
+
 		if(historia.getNome() != null)
 		{
 			escrever("Você possui um save com a historia: " + historia.getNome());
