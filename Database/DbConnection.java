@@ -1,3 +1,21 @@
+/*
+Nome do Projeto: Penaltyfootball
+Data de Criação: 20/05/2023
+Banco de dados: MySQL
+Package: ModosDeJogo
+JDK: 17
+Libraries: mysql-connector-java
+Desenvolvedores:
+Ana Lucia
+Bruno de Oliveira
+Giovanna Moreira
+Lauriano Carlos
+Maria Helena dos Santos
+Melissa Gonçalves
+Última modificação: 21/05/2023 (Maria Helena)
+Classe ModoHistoria
+Essa classe  é responsável por estabelecer uma conexão com o banco de dados. Ela utiliza a API JDBC (Java Database Connectivity) para interagir com o banco de dados..
+*/
 package Database;
 
 import java.sql.Connection;
@@ -17,14 +35,14 @@ public class DbConnection {
 
         Connection connection = null;          //atributo do tipo Connectio
     try {
-        // Carregando o JDBC Driver padrão
-        String driverName = "com.mysql.jdbc.Driver";
-            
+
+       // Carregando o driver JDBC padrão do MySQL
+        String driverName = "com.mysql.jdbc.Driver";          
         Class.forName(driverName);
             
             
             
-        // Configurando a nossa conexão com um banco de dados//
+        // Configurando a conexão com o banco de dados
             
                 String serverName = "localhost";    //caminho do servidor do BD
             
@@ -60,8 +78,6 @@ public class DbConnection {
 
         } catch (ClassNotFoundException e) {  //Driver não encontrado
 
-
-
             System.out.println("O driver expecificado nao foi encontrado.");
 
             return null;
@@ -69,15 +85,11 @@ public class DbConnection {
         } catch (SQLException e) {
 
         //Não conseguindo se conectar ao banco
-
             System.out.println("Nao foi possivel conectar ao Banco de Dados.");
             System.out.println(e.getMessage());
             return null;
 
         }
-
-
-
 
     }
 
