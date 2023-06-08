@@ -5,6 +5,7 @@ public class HistoriaItem {
     private String descricao;
     private int parte;
     private String nome;
+    private int id;
 
     public HistoriaItem() {
 
@@ -17,6 +18,17 @@ public class HistoriaItem {
         this.parte = parte;
         this.nome = nome;
     }
+    
+    // Id Get; Set;
+    public int getId()
+    {
+    	return this.id;
+    }
+    
+    public void setId(int value)
+    {
+    	this.id = value;
+    }
 
     // Titulo Get; Set;
     public String getTitulo() {
@@ -24,7 +36,7 @@ public class HistoriaItem {
     }
 
     public void setTitulo(String value) {
-        this.descricao = value;
+        this.titulo = value;
     }
 
     // Descricao Get; Set;

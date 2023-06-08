@@ -13,31 +13,30 @@ public class HistoriaRepository {
 
     DbConnection db = new DbConnection();
     Connection con = db.getConexaoMySQL();
-
     public HistoriaItem getHistoryByUsername(String username) {
     	
     	HistoriaItem result = null;
     	
         String query = new StringBuilder()
-        .append("select h.Nm_History as Nome, h.Part as Parte, h.Title as Titulo, h.description as Descricao ")
+        .append("select h.id, h.Nm_History as Nome, h.Part as Parte, h.Title as Titulo, h.description as Descricao ")
         .append("from tb_save s ")
         .append("inner join tb_history_item h ")
         .append("on s.id_history_item = h.id ")
         .append("where s.username = '" + username + "'").toString();
         
         result = executeQuery(query);
-        
-        if(result.getParte() == 0)
-        {
-        	query = new StringBuilder()
-        	        .append("select h.Nm_History as Nome, h.Part as Parte, h.Title as Titulo, h.description as Descricao ")
-        	        .append("from tb_history_item h ")
-        	        .append("where h.Part = 1 ")
-        	        .append("limit 1").toString();
-        	
-        	result = executeQuery(query);
-        	     	
-        }     
+
+       //if(result.getParte() == 0)
+       //{
+       //	query = new StringBuilder()
+       //	        .append("select h.id, h.Nm_History as Nome, h.Part as Parte, h.Title as Titulo, h.description as Descricao ")
+       //	        .append("from tb_history_item h ")
+       //	        .append("where h.Part = 1 ")
+       //	        .append("limit 1").toString();
+       //	
+       //	result = executeQuery(query);
+       //	     	
+       //}     
         
         return result;
     }
@@ -47,7 +46,7 @@ public class HistoriaRepository {
     	HistoriaItem result = null;
     
     	String query = new StringBuilder()
-    	        .append("select h_item.Nm_History as Nome, h_item.Part as Parte, h_item.Title as Titulo, h_item.description as Descricao ")
+    	        .append("select h.id, h_item.Nm_History as Nome, h_item.Part as Parte, h_item.Title as Titulo, h_item.description as Descricao ")
     	        .append("from tb_history h ")
     	        .append("inner join tb_history_item h_item ")
     	        .append("on h_item.Nm_History = h.nm_History ")
@@ -64,7 +63,7 @@ public class HistoriaRepository {
     	HistoriaItem result = null;
     
     	String query = new StringBuilder()
-    	        .append("select h_item.Nm_History as Nome, h_item.Part as Parte, h_item.Title as Titulo, h_item.description as Descricao ")
+    	        .append("select h.id, h_item.Nm_History as Nome, h_item.Part as Parte, h_item.Title as Titulo, h_item.description as Descricao ")
     	        .append("from tb_history h ")
     	        .append("inner join tb_history_item h_item ")
     	        .append("on h_item.Nm_History = h.nm_History ")
@@ -78,7 +77,7 @@ public class HistoriaRepository {
     
     public HistoriaItem getProximaParte(HistoriaItem historia) {
         String query = new StringBuilder()
-        .append("select h.Nm_History as nome, h.description as descricao, h.Title as titulo, h.Part as Parte ")
+        .append("select h.id, h.Nm_History as nome, h.description as descricao, h.Title as titulo, h.Part as Parte ")
         .append("from tb_history_item h ")
         .append("where h.Part = " + (historia.getParte() + 1))
         .append(" and h.Nm_History = '" + historia.getNome() + "'").toString();
@@ -121,20 +120,16 @@ public class HistoriaRepository {
     {
     	try (Statement stmt = con.createStatement()) {
             
-            String nome = "";
-            String descricao = "";
-            String titulo = "";
-            int parte = 0;
-
+            HistoriaItem historia = new HistoriaItem();
+            
             ResultSet rs = stmt.executeQuery(query);
             while (rs.next()) {
-                nome = rs.getString("Nome");
-                descricao = rs.getString("Descricao");
-                titulo = rs.getString("Titulo");
-                parte = rs.getInt("Parte");
+                historia.setNome(rs.getString("Nome"));
+                historia.setDescricao(rs.getString("Descricao"));
+                historia.setTitulo(rs.getString("Titulo"));
+                historia.setParte(rs.getInt("Parte"));
+                historia.setId(rs.getInt("id"));
             }
-            HistoriaItem historia = new HistoriaItem(titulo, descricao, parte, nome);
-           
             return historia;
 
         } catch (SQLException ex) {

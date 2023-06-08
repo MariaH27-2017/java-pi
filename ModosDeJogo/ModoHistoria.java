@@ -25,27 +25,34 @@ public class ModoHistoria {
 		
 	    HistoriaItem historia = historiaService.exibirOpcoesDeHistorias(usuario);
 		historiaService.exibirHistoria(historia);
+		escrever("Então vamos a partida! ");
 
 	    while(continuar == true)
 	    {
 			escrever("");
-			escrever("Então vamos a partida! ");
 
 			Thread.sleep(2000); 
 			escrever("");
 			
 			gol = jogoService.iniciarPartida(1);
 			
-			if(gol == false && contadorErrors < 3)
+			if(gol == false && contadorErrors <= 3)
         	{
 				contadorErrors += 1;
-        		escrever("Tente Novamente");
+        		escrever("Tente Novamente");       	        		
         	}
 			else
 			{
+				if(contadorErrors >= 3 && gol == false)
+	        	{
+					escrever("Lamento, você excedeu o limite de erros no jogo de penalidades. É o fim do jogo.");
+					escrever("");
+	        		break;
+	        	}
+				
 				Thread.sleep(2000); 
 				contadorErrors = 0;
-				historia = historiaService.exibirProximaParte(historia);
+				historia = historiaService.exibirProximaParte(historia, usuario.getUsername());
 				
 				if(historia == null)
 				{
@@ -53,12 +60,7 @@ public class ModoHistoria {
 				}	
 			}
 			
-			if(contadorErrors > 3 && gol == false)
-        	{
-				escrever("Lamento, você excedeu o limite de erros no jogo de penalidades. É o fim do jogo.");
-				escrever("");
-        		break;
-        	}
+			
 					
 	    }
 						

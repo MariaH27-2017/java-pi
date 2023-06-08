@@ -3,11 +3,14 @@ import Models.Historia;
 import Models.HistoriaItem;
 import Models.Usuario;
 import Repositorios.HistoriaRepository;
+import Repositorios.SaveRepository;
+
 import java.util.*;
 
 public class HistoriaService {
 	
 	HistoriaRepository repository = new HistoriaRepository();
+    SaveRepository saveRepository = new SaveRepository();
 	Scanner scanner = new Scanner(System.in);
 	String tracosEsquerda = "------------- ";
 	String tracosDireita = " -------------";
@@ -19,7 +22,7 @@ public class HistoriaService {
 		return historia;
 	}
 
-	public HistoriaItem exibirProximaParte(HistoriaItem historia)
+	public HistoriaItem exibirProximaParte(HistoriaItem historia, String username)
 	{
 		HistoriaItem proxParte = repository.getProximaParte(historia);
 
@@ -32,6 +35,7 @@ public class HistoriaService {
 		}
 		else
 		{
+			saveRepository.salvar(username, proxParte.getId());
 			exibirHistoria(proxParte);
 			return proxParte;
 		}
@@ -43,7 +47,7 @@ public class HistoriaService {
 	{
 		HistoriaItem historia = repository.getHistoryByUsername(usuario.getUsername());
 		
-		if(historia != null)
+		if(historia.getNome() != null)
 		{
 			escrever("Você possui um save com a historia: " + historia.getNome());
 			escrever("Deseja continuar? 1.Sim 2.Não");
@@ -64,6 +68,7 @@ public class HistoriaService {
 		else
 		{
 			ArrayList<Integer> numerosHistorias = new ArrayList<Integer>();
+			escrever("Escolha uma historia: ");
 			for(Historia h : historias)
 		      {
 		    	  escrever(h.getNumero() + ". " +  h.getNome() + " : " + h.getDescricao());
@@ -109,6 +114,7 @@ public class HistoriaService {
 		}
 		else
 		{
+			escrever("");
 			String texto = new StringBuilder()
 				    .append(tracosEsquerda)
 					.append("Parte " + historia.getParte() + " - " + historia.getTitulo())

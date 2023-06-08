@@ -61,36 +61,40 @@ public class UsuarioService {
 	public Usuario login()
 	{
 		Usuario usuario = pegarCredeciais();
-				
-		while(repositorio.verificarCredenciais(usuario) == false)
+		boolean usuarioLogado = repositorio.verificarCredenciais(usuario);		
+		while(usuarioLogado == false)
 		{
 			write("Credenciais inválidas, deseja tentar novamente?");
 			write("1. Sim     2. Não");
 			String r = scanner.nextLine();
-			
-			if(r.equalsIgnoreCase("2") || r.equalsIgnoreCase("Não"))
+			if(r.equalsIgnoreCase("Sim") || r.equalsIgnoreCase("1") || r.equalsIgnoreCase("S"))
+			{
+				usuario = pegarCredeciais(); 
+			}
+			else if(r.equalsIgnoreCase("Nao") || r.equalsIgnoreCase("2") || r.equalsIgnoreCase("N") || r.equalsIgnoreCase("Não"))
 			{
 				break;
 			}
-			else
-			{
-				usuario = pegarCredeciais(); 
-			}			
+			
+			usuarioLogado = repositorio.verificarCredenciais(usuario);	
+		
 		}
 		
-		boolean usuarioLogado = repositorio.verificarCredenciais(usuario);
+		
 		
 		if(usuarioLogado == true)
 		{
 			write("Usuario Logado com Sucesso");
+			write("");
+			return usuario;	
 		}
 		else
 		{
 			write("Falha no login, credenciais estão inválidas");
+			return null;	
 		}
 		
-		write("");
-		return usuario;		
+			
 		
 	}
 	
