@@ -1,3 +1,25 @@
+/*
+Nome do Projeto: Penaltyfootball
+Data de Criação: 29/05/2023
+Banco de dados: MySQL
+Package: Services
+JDK: 17
+Libraries: mysql-connector-java
+Desenvolvedores:
+Ana Lucia
+Bruno de Oliveira
+Giovanna Moreira
+Lauriano Carlos
+Maria Helena dos Santos
+Melissa Gonçalves
+Última modificação: 05/06/2023 (Lauriano)
+Classe JogoService
+
+Essa classe é responsável por fornecer serviços relacionados ao jogo de pênaltis.
+Ela permite ao usuário iniciar uma partida, escolher um canto para chutar e valida se foi gol ou defesa.
+A classe utiliza a classe Animacao para exibir animações relacionadas ao resultado do chute.
+
+*/
 package Services;
 import java.util.*;
 public class JogoService {

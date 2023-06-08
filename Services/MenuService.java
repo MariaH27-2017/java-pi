@@ -1,18 +1,28 @@
 /*
- * Nome do arquivo: Jogo.java
- * Autor: Ana Lucia,Bruno de Oliveira, Giovanna Moreira, Lauriano Carlos, Melissa Gonçalves
- * Data de criação: 01/03/2023
- * Versão: 1.0
- * Descrição: classe que manipula os comando do usuario para executar metodos de jogo
- * Última modificação: 13/04/2023 (Lauriano)
- */
+Nome do Projeto: Penaltyfootball
+Data de Criação: 29/05/2023
+Banco de dados: MySQL
+Package: Services
+JDK: 17
+Libraries: mysql-connector-java
+Desenvolvedores:
+Ana Lucia
+Bruno de Oliveira
+Giovanna Moreira
+Lauriano Carlos
+Maria Helena dos Santos
+Melissa Gonçalves
+Última modificação: 01/06/2023 (Lauriano)
+Classe MenuService
+Essa classe é responsável por exibir o menu principal do jogo e permitir que o usuário escolha um modo de jogo.
+Ela cria instâncias dos objetos ModoSolo, MultiJogador, ModoRankeada e ModoHistoria para cada modo de jogo.
+*/
 
 package Services;
 import java.util.*;
 import ModosDeJogo.*;
-import Repositorios.RankingRepository;
 import Models.Usuario;
-import Services.RankingService;
+
 public class MenuService {
 
 	/**
